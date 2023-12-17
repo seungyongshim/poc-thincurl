@@ -1,4 +1,4 @@
-﻿namespace CurlThin
+namespace CurlThin
 {
     using System;
     using System.IO;
@@ -24,7 +24,7 @@
         public const string LIBCURL = "libcurl";
 
         [DllImport(LIBCURL, EntryPoint = "curl_global_init")]
-        public static extern CURLcode Init(CURLglobal flags = CURLglobal.DEFAULT);
+        public static extern CURLcode Init(CURLglobal flags = CURLglobal.ALL);
 
         [DllImport(LIBCURL, EntryPoint = "curl_global_cleanup")]
         public static extern void Cleanup();
@@ -46,7 +46,7 @@
             public static extern SafeEasyHandle Init();
 
             [DllImport(LIBCURL, EntryPoint = "curl_easy_cleanup")]
-            public static extern void Cleanup(IntPtr handle);
+            public static extern void Cleanup(SafeEasyHandle handle);
 
             [DllImport(LIBCURL, EntryPoint = "curl_easy_perform")]
             public static extern CURLcode Perform(SafeEasyHandle handle);

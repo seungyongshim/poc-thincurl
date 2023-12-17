@@ -49,6 +49,8 @@ namespace CurlThin
                     
                     CurlNative.Easy.GetInfo(easy, CURLINFO.RESPONSE_CODE, out int statusCode);
 
+                    
+
                     return new CurlThinClientResult
                     {
                         CurlResult = result,

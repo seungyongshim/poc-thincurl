@@ -1,4 +1,4 @@
-﻿namespace CurlThin
+namespace CurlThin
 {
     using System;
     using System.Runtime.InteropServices;
@@ -11,10 +11,28 @@
 
         public override bool IsInvalid => handle == IntPtr.Zero;
 
+        private bool disposedValue = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    ReleaseHandle();
+                }
+
+                disposedValue = true;
+            }
+            base.Dispose(disposing);
+        }
+
         protected override bool ReleaseHandle()
         {
-            CurlNative.Easy.Cleanup(handle);
-            return true;
+            if (!disposedValue)
+            {
+                CurlNative.Easy.Cleanup(this);
+            }
+            return disposedValue;
         }
     }
 }
